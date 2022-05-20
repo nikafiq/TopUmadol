@@ -8,4 +8,4 @@ A automatic fan counter to manage circle fan count to help you get that monthly 
 Project plan/feature:
 -Fan counter *5% progress*
 -Stamina calculator *using [umabot](https://github.com/jonas-chow/umabot) tools*
--inheritance compatibility table *based on [Yukino's compatibility sheet](https://docs.google.com/spreadsheets/d/1S_aTgKDmJ2jKp29nncjJrPcjLCvrSAjYwIOBqZZXtGM/edit#gid=414718308)
+-inheritance compatibility table *based on [Yukino's compatibility sheet](https://docs.google.com/spreadsheets/d/1S_aTgKDmJ2jKp29nncjJrPcjLCvrSAjYwIOBqZZXtGM/edit#gid=414718308)*
