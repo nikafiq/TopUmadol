@@ -10,7 +10,7 @@ print(x)
 #    writer = csv.writer(f)
 #    writer.writerow(s)
 
-def text_splitter(member, fan_count):
-    global member, fan_count
+#def text_splitter(member, fan_count):
+    #global member, fan_count
 
-    def csv_input(member, fan_count):
+    #def csv_input(member, fan_count):
