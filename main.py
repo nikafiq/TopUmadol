@@ -17,6 +17,7 @@ text = tool.image_to_string(img, lang="jpn", builder=builder)
 
 text = text.replace(',','')
 text = text.replace('.','')
+text = text.replace(' ','')
 p = re.compile('[0-9]+')
 num = p.findall(text)
 
@@ -27,6 +28,23 @@ with open('num.txt','w') as txt:
     for item in num:
         txt.write("%s\n" % item)
 
-print(text)
-print(type(text),end="/n/n")
-print(num)
+#print(type(len(num)))
+#print(text)
+#print(type(num),end="\n\n")
+#print(num)
+num2 = []
+
+for i in range(len(num)):
+     if len(num[i]) >= 7:
+        num2.append(num[i])
+print(num2)
+#print(type(num))
+#print(num)
+
+#print(text)
+player = text.split("\n")
+playerlist = []
+
+for i in range(0,len(player),3):
+    playerlist.append(player[i])
+print(playerlist)
