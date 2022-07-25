@@ -45,6 +45,7 @@ def glob_enumerate(x):
     y = int(a_string)
     return y
 
+#renaming cropped pictures
 def ss_crop():
     path = 'pic/crop'
     pathexist = os.path.exists(path)
@@ -56,9 +57,6 @@ def ss_crop():
         j = glob_enumerate(i)
         image_crop(im).save(f'pic/crop/img{j}.png','png')
 
-def daily_folder():
-    for x in range(1,32,1):
-        print(x)
 
 def make_unique_filename(file_path):
     duplicate = 0
