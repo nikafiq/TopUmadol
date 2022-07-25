@@ -60,13 +60,14 @@ def list_fan():
             playerlist.append(x)
         #print(num)
         #print(player)
-        #return player, num
 
-ss_crop()
+
+
+#ss_crop()
 list_fan()
+#move_files()
 print(playerlist)
 print(fannum)
-
 
 
 #with open('text.txt','w') as txt:

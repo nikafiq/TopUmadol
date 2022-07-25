@@ -1,6 +1,8 @@
+import os.path
 from PIL import Image
 import glob
 import re
+import shutil
 
 # Opens a image in RGB mode
 #im = Image.open("pic/umamusume 2022_07_21 17_51_05.png")
@@ -44,7 +46,39 @@ def glob_enumerate(x):
     return y
 
 def ss_crop():
+    path = 'pic/crop'
+    pathexist = os.path.exists(path)
+    if not pathexist:
+        os.makedirs(path)
+        print('Created /crop directory because it does not exist',end='\n\n')
     for i in glob.iglob("pic/*.png"):
         im=Image.open(i)
         j = glob_enumerate(i)
         image_crop(im).save(f'pic/crop/img{j}.png','png')
+
+def daily_folder():
+    for x in range(1,32,1):
+        print(x)
+
+def make_unique_filename(file_path):
+    duplicate = 0
+    base, extension = os.path.splitext(file_path)
+    while os.path.exists(file_path):
+        duplicate += 1
+        file_path = f'{base}{duplicate}'
+    return file_path
+
+def move_files():
+    path = 'pic/day0'
+    pathexist = os.path.exists(path)
+    if pathexist:
+        newname = make_unique_filename(path)
+        os.makedirs(newname)
+        for images in glob.iglob('pic/*png'):
+            shutil.move(images,newname)
+        shutil.move('pic/crop',newname)
+    else:
+        os.makedirs(path)
+        for images in glob.iglob('pic/*png'):
+            shutil.move(images,path)
+        shutil.move('pic/crop',path)
