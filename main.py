@@ -102,6 +102,7 @@ scan_button.config(width=20, height=2)
 export_button = tkinter.Button(window_main, text="Export data", command=export_data)
 export_button.config(width=20, height=2)
 
+create_input_folder()
 scan_button.pack()
 export_button.pack()
 window_main.mainloop()

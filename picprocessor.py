@@ -45,6 +45,12 @@ def glob_enumerate(x):
     y = int(a_string)
     return y
 
+def create_input_folder():
+    path = 'pic/'
+    pathexist = os.path.exists(path)
+    if not pathexist:
+        os.makedirs(path)
+
 #renaming cropped pictures
 def ss_crop():
     path = 'pic/crop'
