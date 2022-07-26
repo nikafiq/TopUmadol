@@ -51,7 +51,7 @@ def ss_crop():
     pathexist = os.path.exists(path)
     if not pathexist:
         os.makedirs(path)
-        print('Created /crop directory because it does not exist',end='\n\n')
+        #print('Created /crop directory because it does not exist',end='\n\n')
     for i in glob.iglob("pic/*.png"):
         im=Image.open(i)
         j = glob_enumerate(i)

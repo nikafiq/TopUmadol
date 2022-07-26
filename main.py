@@ -3,12 +3,12 @@ import pyocr
 from picprocessor import *
 import pandas as pd
 import openpyxl
-from os.path import exists
+import tkinter
 
 #linking OCR program path
-path='venv/Tesseract-OCR/'
+path='Tesseract-OCR/'
 os.environ['PATH'] = os.environ['PATH'] + path
-pyocr.tesseract.TESSERACT_CMD = r'venv/Tesseract-OCR/Tesseract.exe'
+pyocr.tesseract.TESSERACT_CMD = r'Tesseract-OCR/Tesseract.exe'
 tools = pyocr.get_available_tools()
 tool = tools[0]
 
@@ -82,11 +82,33 @@ def add_df():
         newname = 'Day'+f'{len(df.columns)}'
         df[newname] = fannum
         df.to_excel('out.xlsx')
+    fannum = []
+    playerlist = []
 
+def run_ss():
+    ss_crop()
+    list_fan()
+
+def export_data():
+    add_df()
+    move_files()
+
+#initialize gui
+window_main = tkinter.Tk()
+window_main.title("TopUmadol - Fan Counter")
+window_main.geometry('400x200')
+scan_button = tkinter.Button(window_main, text="Start scanning", command=run_ss)
+scan_button.config(width=20, height=2)
+export_button = tkinter.Button(window_main, text="Export data", command=export_data)
+export_button.config(width=20, height=2)
+
+scan_button.pack()
+export_button.pack()
+window_main.mainloop()
+
+#ss_crop()
+#list_fan()
+#add_df()
+#move_files()
 #print(playerlist)
 #print(fannum)
-ss_crop()
-list_fan()
-add_df()
-move_files()
-
