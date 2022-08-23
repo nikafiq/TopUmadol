@@ -1,4 +1,5 @@
 import os, pyocr, tkinter, win32gui, threading, datetime, openpyxl
+from tkinter import filedialog
 from picprocessor import *
 import pandas as pd
 from tkinter import *
@@ -17,8 +18,7 @@ def ocr_path():
         tools = pyocr.get_available_tools()
         tool = tools[0]
     else:
-        path = tkFileDialog.askdirectory()
-ocr_path()
+        ss_display.configure(text="\"Tesseract-OCR\" folder not found, please copy \nthe OCR folder into the same folder as \"main.py\" \nRestart the program after copying")
 
 #creating empty list
 fannum =[]
@@ -102,13 +102,14 @@ def printit():
     global counter, time_gap, ss_update, t
     try:
         umawin = win32gui.FindWindow(None, r'umamusume')
+        win32gui.SetForegroundWindow(umawin)
     except (win32gui.error):
         ss_display.configure(text="Screenshot stopped, game windows not found")
         t.cancel()
+        pass
     t = threading.Timer(time_gap, printit)
     t.start()
     counter += 1
-    win32gui.SetForegroundWindow(umawin)
     dimensions = win32gui.GetWindowRect(umawin)
     image = ImageGrab.grab(dimensions)
     image.save("pic/"f"{today}_" + "ss_" + f"{str(counter).zfill(2)}" + ".png")
@@ -139,8 +140,8 @@ def ss():
 def stop_ss():
     global counter
     t.cancel()
-    counter = 0
     ss_display.configure(text="Screenshot stopped")
+    counter = 0
 
 #initialize gui
 window_main = tkinter.Tk()
@@ -175,8 +176,10 @@ ss_button.pack(pady= 10)
 ss_stop_button.pack(pady=10)
 scan_button.pack(pady= 10)
 export_button.pack(pady= 10)
+ocr_path()
 window_main.mainloop()
 create_input_folder()
+
 
 #ss_crop()
 #list_fan()
