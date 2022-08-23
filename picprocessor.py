@@ -28,9 +28,9 @@ import shutil
 def image_crop(x):
     width, height = x.size
 
-    left = 150
-    top = (height - 30) / 2
-    right = width - 150
+    left = width / 4.84
+    top = (height - (height / 10)) / 2
+    right = width - left
     bottom = 3 * height / 4
 
     im1 = x.crop((left, top, right, bottom))
