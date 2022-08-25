@@ -10,7 +10,7 @@ A automatic fan counter to manage circle fan count to help you get that monthly 
 ### Installation:
 1. Download the TopUmadol.exe from the [Releases](https://github.com/nikafiq/TopUmadol/releases)
 2. Install [Tesseract](https://github.com/UB-Mannheim/tesseract/wiki) into the same folder as TopUmadol.exe, **OR** you can download it [here](https://drive.google.com/file/d/1t1Z776bp3w2CxKmc0E4LPNpNBsYanngD/) and unzip it into same folder as the exe
-3. Run `TopUmadol.exe` and check if the program can detect Tesseract-OCR folder
+3. Run `TopUmadol.exe` and check if the program can detect Tesseract-OCR folder. If no error or warning displayed on the app, you are good to go
 
 ### How to use:
 1. Screenshot your game windows with `Take screenshot` button
