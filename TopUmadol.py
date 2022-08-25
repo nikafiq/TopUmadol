@@ -7,6 +7,7 @@ from PIL import ImageGrab, Image, ImageTk
 from urllib.request import urlopen
 # if "pip install win32gui" doesn't work, try using "pip install pywin32"
 
+#pathing the program to OCR
 def ocr_path():
     global path, tool, tools
     path = 'Tesseract-OCR/'
@@ -63,6 +64,7 @@ def player_list(text):
             playerlist.append(player[i])
     return playerlist
 
+#Inputting player list and fan number into pre-made list
 def list_fan():
     global fannum, playerlist
     for i in glob.iglob('pic/crop/*.png'):
@@ -75,13 +77,7 @@ def list_fan():
         for x in player:
             playerlist.append(x)
 
-def daily_folder():
-    for i in glob.glob('pic/crop/'):
-        for j in glob.glob(i+'*png'):
-            list_fan(j)
-            print(fannum)
-            print(playerlist)
-
+#Export the list into an excel file
 def add_df():
     global playerlist, fannum
     path = 'out.xlsx'
@@ -98,8 +94,9 @@ def add_df():
     fannum = []
     playerlist = []
 
+#Find game windows and take screenshot of it
 def printit():
-    global counter, time_gap, ss_update, t
+    global counter, time_gap, t
     try:
         umawin = win32gui.FindWindow(None, r'umamusume')
         win32gui.SetForegroundWindow(umawin)
@@ -113,13 +110,17 @@ def printit():
     dimensions = win32gui.GetWindowRect(umawin)
     image = ImageGrab.grab(dimensions)
     image.save("pic/"f"{today}_" + "ss_" + f"{str(counter).zfill(2)}" + ".png")
-    ss_display.configure(text="Took screenshot %d" % counter)
+    if counter %2 == 0:
+        ss_display.configure(text="Took screenshot %d" % counter, foreground="red")
+    else:
+        ss_display.configure(text="Took screenshot %d" % counter, foreground="green")
     # print("Took screenshot " + f"{counter}")
     if counter == 15:
         t.cancel()
         counter = 0
         ss_display.configure(text="Finished taking screenshot")
 
+#Button funtion for tkinter
 def run_ss():
     ss_crop()
     list_fan()
@@ -159,6 +160,7 @@ timevar = StringVar(window_main)
 timevar.set("2.5")
 timer_spinbox = Spinbox(window_main, from_=0, to=5, increment=0.5, state="readonly", textvariable=timevar)
 
+#button setting
 ss_button = tkinter.Button(window_main, text="Take screenshot", command=ss)
 ss_button.config(width=20, height=2)
 ss_stop_button = tkinter.Button(window_main, text="Force stop screenshot", command=stop_ss)
