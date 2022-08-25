@@ -123,6 +123,7 @@ def printit():
 def run_ss():
     ss_crop()
     list_fan()
+    ss_display.configure(text="Finished scanning screenshot")
 
 def export_data():
     add_df()
